@@ -3,8 +3,12 @@ sap.ui.define(["./BaseController"], function (BaseController) {
 
 	return BaseController.extend("br.com.bioindica.controller.App", {
 		onInit: function () {
-			// apply content density mode to root view
-			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
-		}
+			this.getView().addStyleClass(
+				this.getOwnerComponent().getContentDensityClass()
+			);
+
+			var bDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+			sap.ui.getCore().applyTheme(bDarkTheme.matches ? "sap_horizon_dark" : "sap_horizon");
+		},
 	});
 });

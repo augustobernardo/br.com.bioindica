@@ -73,6 +73,7 @@
 			"targets": {
 				"main": {
 					"viewId": "main",
+					"transition": "fade",
 					"viewName": "Main"
 				}
 			}
