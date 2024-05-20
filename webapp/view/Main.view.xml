@@ -79,14 +79,15 @@
 
                 <CheckBox
                   id="idRememberMeCheckBox"
+                  class="sapUiSmallMarginEnd"
                   text="{i18n>formRememberMe}"
-                  selected="{loginModel>/LoginForm/RememberMe}"/>
+                  selected="{viewModelLogin>/Login/RemeberMe}"/>
 
                 <Link
                   id="idForgotPasswordLink"
                   text="{i18n>formForgotPassword}"
                   press="onForgot"
-                  class="sapUiTinyMarginTop" />
+                  class="sapUiTinyMarginTop customLinkNoUnderline" />
               </HBox>
 
               <VBox
@@ -102,7 +103,7 @@
                   width="15rem"
                   type="Emphasized"
                   text="{i18n>formButtonLogin}"
-                  press="onLogin" />
+                  press="onSubmitLogin" />
               </VBox>
 
               <HBox
@@ -123,7 +124,7 @@
                   id="idCreateAccountLink"
                   text="{i18n>formCreateAccount}"
                   press="onRouteRegister"
-                  class="sapUiSmallMarginTop" />
+                  class="sapUiSmallMarginTop customLinkNoUnderline" />
               </HBox>
             </VBox>
           </f:content>

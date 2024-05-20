@@ -21,6 +21,9 @@ sap.ui.define([
 			this._oView.setModel(this._oViewModel, "viewModel");
 
 			this._oLogin = new Login(this);
+
+			// Set the density class of the app
+			this._oView.addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		},
 
 		getTextMain: function (sKey, aArgs) {

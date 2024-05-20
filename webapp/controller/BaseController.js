@@ -114,7 +114,8 @@ sap.ui.define([
 			return {
 				Login: {
 					Email: "",
-					Password: ""
+					Password: "",
+					RemeberMe: false
 				},
 				LoginControl: {
 					EmailInput: {

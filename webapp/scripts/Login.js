@@ -2,10 +2,12 @@ sap.ui.define([
 	"br/com/bioindica/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
 ], function(
 	BaseController,
 	Controller,
-	JSONModel
+	JSONModel,
+	MessageBox
 ) {
 	"use strict";
 
@@ -60,9 +62,10 @@ sap.ui.define([
 			var bPasswordIsValid = this.checkPasswordField();
 
 			if (bEmailIsValid && bPasswordIsValid) {
-				// Call the login service
+				// Call the login service (Backend)
 				return;
 			}
+			MessageBox.error(this._oController.getTextMain("stateErrorLogin"));
 		},
 
 		/**
@@ -131,6 +134,10 @@ sap.ui.define([
 					this._setFormDataAndControls();
 					return true;
 				}
+				this._oFormLoginControl.PasswordInput = {
+					ValueState: "Error",
+					ValueStateText: this._oController.getTextMain("stateErrorInvalidPassword")
+				};
 			} else {
 				this._oFormLoginControl.PasswordInput = {
 					ValueState: "Error",
