@@ -1,4 +1,12 @@
-sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent", "sap/ui/core/routing/History"], function (Controller, UIComponent, History) {
+sap.ui.define([
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/UIComponent",
+	"sap/ui/core/routing/History"
+], function (
+	Controller,
+	UIComponent,
+	History
+) {
 	"use strict";
 
 	return Controller.extend("br.com.bioindica.controller.BaseController", {
@@ -70,6 +78,116 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/UIComponent", "sap/ui/
 			} else {
 				this.getRouter().navTo("main", {}, undefined, true);
 			}
+		},
+
+		/**
+		 * Convenience method for getting the translated text from the i18n resource bundle.
+		 * @param {string} sKey The key of the text
+		 * @param {array} [aArgs] The arguments for the text
+		 * @returns {string} The translated text
+		 * @public
+		 */
+		getText: function (sKey, aArgs) {
+			var oResourceBundle = this.getResourceBundle();
+			return oResourceBundle.getText(sKey, aArgs);
+		},
+
+		/**
+		 * Create the view model instance.
+		 * @returns {object} The view model instance
+		 * @public
+		 * @abstract
+		 */
+		createViewModelGeneral: function () {
+			return {
+				isLogged: false,
+			};
+		},
+
+		/**
+		 * Create the Login view model instance.
+		 * @returns {object} The view model instance
+		 * @public
+		 * @abstract
+		 */
+		createViewModelLogin: function () {
+			return {
+				Login: {
+					Email: "",
+					Password: ""
+				},
+				LoginControl: {
+					EmailInput: {
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					PasswordInput: {
+						ValueState: "None",
+						ValueStateText: ""
+					},
+				},
+			}
+		},
+
+		/**
+		 * Create the Register view model instance.
+		 * @returns {object} The view model instance
+		 * @public
+		 * @abstract
+		 */
+		createViewModelRegister: function () {
+			return {
+				Register: {
+					Email: "",
+					Password: "",
+					ConfirmPassword: ""
+				},
+				RegisterControl: {
+					EmailInput: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					PasswordInput: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					ConfirmPasswordInput: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+				}
+			}
+		},
+
+		/**
+		 * Check the email value.
+		 * @public
+		 * @abstract
+		 * @param {string} sEmail The email value
+		 * @returns {boolean} Returns true if the value is valid
+		 */
+		checkEmail: function (sEmail) {
+			// Validate the email
+			var oRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+			return oRegex.test(sEmail);
+		},
+
+		/**
+		 * Check the password value.
+		 * @public
+		 * @abstract
+		 * @param {string} sPassword The password value
+		 * @returns {boolean} Returns true if the value is valid
+		 */
+		checkPassword: function (sPassword) {
+			// Minimum eight characters, including letters, numbers and special characters
+			var oRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+			return oRegex.test(sPassword);
 		}
+
+
 	});
 });

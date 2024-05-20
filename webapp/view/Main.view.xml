@@ -9,16 +9,14 @@
 >
 	<Page
 		id="idLoginPage"
-		showHeader="false"
-	>
+		showHeader="false">
 		<content>
 			<VBox
 				id="idVBox"
 				justifyContent="Center"
 				alignContent="Center"
 				alignItems="Center"
-				class="sapUiLargeMarginTop sapUiSmallMarginBeginEnd"
-			>
+				class="sapUiLargeMarginTop sapUiSmallMarginBeginEnd">
 				<!-- <HBox > -->
 					<Title
 						id="idBioindicaTitle"
@@ -26,10 +24,9 @@
 						text="{i18n>appTitle}"
 						level="H1"
 						titleStyle="H2"
-						textAlign="Center"
-					/>
+						textAlign="Center" />
 				<!-- </HBox> -->
-				
+
 				<f:Card id="id_Card">
 
           <f:header>
@@ -47,29 +44,31 @@
 
               <!-- EMAIL -->
               <Label
-                id="idLoginEmailLabel"
+                id="idEmailLoginLabel"
                 text="{i18n>formEmail}"
                 required="true" />
               <Input
                 id="idEmailLoginInput"
                 type="Email"
-				ariaLabelledBy="idLoginEmailLabel"
-                submit="onSubmitLogin"
-                liveChange="onLiveChangeEmail"
-                value="{loginModel>/LoginForm/Email}"
+				        ariaLabelledBy="idLoginEmailLabel"
+                submit="onCheckEmailField"
+                value="{viewModelLogin>/Login/Email}"
+                valueState="{viewModelLogin>/LoginControl/EmailInput/ValueState}"
+                valueStateText="{viewModelLogin>/LoginControl/EmailInput/ValueStateText}"
                 class="sapUiSmallMarginBottom" />
 
               <!-- PASSWORD -->
               <Label
-                id="idLoginPasswordLabel"
+                id="idPasswordLoginLabel"
                 text="{i18n>formPassword}"
                 required="true" />
               <Input
                 id="idPasswordLoginInput"
                 type="Password"
-                submit="onSubmitLogin"
-                liveChange="onLiveChangePass"
-                value="{loginModel>/LoginForm/Password}" />
+                submit="onCheckPasswordField"
+                value="{viewModelLogin>/Login/Password}"
+                valueState="{viewModelLogin>/LoginControl/PasswordInput/ValueState}"
+                valueStateText="{viewModelLogin>/LoginControl/PasswordInput/ValueStateText}"/>
 
               <!-- REMEMBER ME -->
               <HBox

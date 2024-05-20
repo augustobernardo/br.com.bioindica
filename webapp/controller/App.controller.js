@@ -1,4 +1,6 @@
-sap.ui.define(["./BaseController"], function (BaseController) {
+sap.ui.define([
+	"br/com/bioindica/controller/BaseController"
+], function (BaseController) {
 	"use strict";
 
 	return BaseController.extend("br.com.bioindica.controller.App", {
