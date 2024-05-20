@@ -110,7 +110,7 @@ sap.ui.define([
 		 * @public
 		 * @abstract
 		 */
-		createViewModelLogin: function () {
+		createLoginViewModel: function () {
 			return {
 				Login: {
 					Email: "",
@@ -159,6 +159,59 @@ sap.ui.define([
 						ValueState: "None",
 						ValueStateText: ""
 					},
+				}
+			}
+		},
+
+		/**
+		 * Create the Home view model instance.
+		 * @returns {object} The view model instance
+		 * @public
+		 * @abstract
+		 */
+		createViewModelHome: function () {
+			return {
+				TabelaUsuarios: [
+					{
+						Nome: "John Doe",
+						Email: "john.doe@example.com",
+						Cpf: "123.456.789-00",
+						Telefone: "(123) 456-7890"
+					},
+					{
+						Nome: "Jane Doe",
+						Email: "jane.doe@example.com",
+						Cpf: "987.654.321-00",
+						Telefone: "(987) 654-3210"
+					}
+				],
+				Usuario: {
+					Nome: "",
+					Email: "",
+					Cpf: "",
+					Telefone: ""
+				},
+				HomeControl: {
+					Nome: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					Email: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					CPF: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					},
+					Telefone: {
+						Value: "",
+						ValueState: "None",
+						ValueStateText: ""
+					}
 				}
 			}
 		},

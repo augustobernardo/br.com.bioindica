@@ -1,0 +1,170 @@
+<mvc:View xmlns:table="sap.ui.table"
+	controllerName="br.com.bioindica.controller.Home"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+  xmlns:tnt="sap.tnt"
+	xmlns:c="sap.ui.core"
+	displayBlock="true"
+	height="100%"
+	busyIndicatorDelay="0">
+
+  <App>
+    <pages>
+      <tnt:ToolPage id="idHomeToolPage">
+        <tnt:header>
+          <tnt:ToolHeader>
+            <Image height="1.5rem"
+                class="sapUiSmallMarginBegin"
+                src="https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg" />
+            <Title level="H1" text="{i18n>appTitle}" wrapping="false">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="Disappear"/>
+              </layoutData>
+            </Title>
+            <ToolbarSpacer />
+            <!-- <SearchField width="16rem" id="searchField">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="Low" group="1"/>
+              </layoutData>
+            </SearchField> -->
+            <!-- <ToolbarSpacer id="spacer">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="Low" group="1"/>
+              </layoutData>
+            </ToolbarSpacer>
+            <Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
+            <OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1">
+              <layoutData>
+                <OverflowToolbarLayoutData group="2"/>
+              </layoutData>
+            </OverflowToolbarButton>
+            <OverflowToolbarButton icon="sap-icon://card" type="Transparent" tooltip="Action 2" text="Action 2">
+              <layoutData>
+                <OverflowToolbarLayoutData group="2"/>
+              </layoutData>
+            </OverflowToolbarButton> -->
+            <ToolbarSeparator>
+              <layoutData>
+                <OverflowToolbarLayoutData group="2"/>
+              </layoutData>
+            </ToolbarSeparator>
+            <OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+            <tnt:ToolHeaderUtilitySeparator/>
+            <ToolbarSpacer width="1.125rem"/>
+            <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+              <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow"/>
+              </layoutData>
+            </Avatar>
+          </tnt:ToolHeader>
+        </tnt:header>
+        <tnt:mainContents>
+          <Page showHeader="false">
+            <content>
+              <VBox id="idContentVBox" class="sapUiSmallMargin">
+                <Panel expanded="true" class="sapUiMediumMarginBottom">
+                  <headerToolbar>
+                    <Toolbar>
+                      <Title text="{i18n>homeNewUser}" level="H2"/>
+                      <ToolbarSpacer/>
+
+                      <Button text="{i18n>homeFormNewUserButton}" press="onSave" icon="sap-icon://add" type="Emphasized"/>
+                      <Button press="onClear" icon="sap-icon://eraser" type="Transparent" tooltip="{i18n>homeFormClear}"/>
+                    </Toolbar>
+                  </headerToolbar>
+                  <content>
+                    <VBox>
+                      <HBox>
+                        <HBox>
+                          <VBox>
+                            <Label text="{i18n>homeFormName}:" required="true"/>
+                            <Input value="{homeViewModel>/Usuario/Nome}" width="15rem" placeholder="{i18n>homeFormNamePlaceHolder}" required="true"/>
+                          </VBox>
+                        </HBox>
+
+                        <ToolbarSpacer width="2rem"/>
+
+                        <HBox >
+                          <VBox>
+                            <Label text="{i18n>homeFormCPF}:" required="true"/>
+                            <MaskInput value="{homeViewModel>/Usuario/Cpf}" mask="999.999.999-99" width="8rem" placeholder="Enter CPF" required="true"/>
+                          </VBox>
+                        </HBox>
+
+                        <ToolbarSpacer width="2rem"/>
+
+                        <HBox >
+                          <VBox>
+                            <Label text="{i18n>homeFormEmail}:" required="true"/>
+                            <Input type="Email" value="{homeViewModel>/Usuario/Email}" placeholder="{i18n>homeFormEmailPlaceHolder}" required="true"/>
+                          </VBox>
+                        </HBox>
+
+                        <ToolbarSpacer width="2rem"/>
+
+                        <HBox >
+                          <VBox>
+                            <Label text="{i18n>homeFormPhone}:" required="true"/>
+                            <MaskInput value="{homeViewModel>/Usuario/Telefone}" mask="(99) 99999-9999" width="8rem" placeholder="Enter Phone" required="true" />
+                          </VBox>
+                        </HBox>
+
+                        <ToolbarSpacer width="2rem"/>
+
+                        <!-- <HBox >
+                          <VBox>
+                            <Label text="Cargo:" required="true"/>
+                            <Input value="{/cargo}" width="8rem" placeholder="Enter Cargo" required="true"/>
+                          </VBox>
+                        </HBox> -->
+                      </HBox>
+                    </VBox>
+                  </content>
+                </Panel>
+
+                <Panel headerText="{i18n>homeTableUsers}">
+                  <!-- <headerToolbar>
+                    <Toolbar>
+                      <Title text="{i18n>homeTableUsers}" level="H2"/>
+                    </Toolbar>
+                  </headerToolbar> -->
+                  <content>
+                      <table:Table id="idTable" rows="{homeViewModel>/TabelaUsuarios}" noData="{i18n>homeTableNoData}">
+                        <table:columns>
+                          <table:Column>
+                            <Label text="{i18n>homeFormName}"/>
+                            <table:template>
+                              <Text text="{homeViewModel>Nome}"/>
+                            </table:template>
+                          </table:Column>
+                          <table:Column>
+                            <Label text="{i18n>homeFormCPF}"/>
+                            <table:template>
+                              <Text text="{homeViewModel>Cpf}"/>
+                            </table:template>
+                          </table:Column>
+                          <table:Column>
+                            <Label text="{i18n>homeFormEmail}"/>
+                            <table:template>
+                              <Text text="{homeViewModel>Email}"/>
+                            </table:template>
+                          </table:Column>
+                          <table:Column>
+                            <Label text="{i18n>homeFormPhone}"/>
+                            <table:template>
+                              <Text text="{homeViewModel>Telefone}"/>
+                            </table:template>
+                          </table:Column>
+                        </table:columns>
+                      </table:Table>
+                  </content>
+                </Panel>
+              </VBox>
+            </content>
+          </Page>
+        </tnt:mainContents>
+      </tnt:ToolPage>
+    </pages>
+  </App>
+
+</mvc:View>

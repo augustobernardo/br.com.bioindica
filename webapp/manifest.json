@@ -74,8 +74,13 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "main",
+					"name": "Main",
 					"target": "main"
+				},
+        {
+					"pattern": "home",
+					"name": "Home",
+					"target": "home"
 				}
 			],
 			"targets": {
@@ -83,7 +88,12 @@
 					"viewId": "main",
 					"transition": "fade",
 					"viewName": "Main"
-				}
+				},
+        "home": {
+          "viewId": "home",
+          "transition": "fade",
+          "viewName": "home/Home"
+        }
 			}
 		}
 	}

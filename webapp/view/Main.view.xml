@@ -52,9 +52,9 @@
                 type="Email"
 				        ariaLabelledBy="idLoginEmailLabel"
                 submit="onCheckEmailField"
-                value="{viewModelLogin>/Login/Email}"
-                valueState="{viewModelLogin>/LoginControl/EmailInput/ValueState}"
-                valueStateText="{viewModelLogin>/LoginControl/EmailInput/ValueStateText}"
+                value="{loginViewModel>/Login/Email}"
+                valueState="{loginViewModel>/LoginControl/EmailInput/ValueState}"
+                valueStateText="{loginViewModel>/LoginControl/EmailInput/ValueStateText}"
                 class="sapUiSmallMarginBottom" />
 
               <!-- PASSWORD -->
@@ -66,9 +66,9 @@
                 id="idPasswordLoginInput"
                 type="Password"
                 submit="onCheckPasswordField"
-                value="{viewModelLogin>/Login/Password}"
-                valueState="{viewModelLogin>/LoginControl/PasswordInput/ValueState}"
-                valueStateText="{viewModelLogin>/LoginControl/PasswordInput/ValueStateText}"/>
+                value="{loginViewModel>/Login/Password}"
+                valueState="{loginViewModel>/LoginControl/PasswordInput/ValueState}"
+                valueStateText="{loginViewModel>/LoginControl/PasswordInput/ValueStateText}"/>
 
               <!-- REMEMBER ME -->
               <HBox
@@ -81,7 +81,7 @@
                   id="idRememberMeCheckBox"
                   class="sapUiSmallMarginEnd"
                   text="{i18n>formRememberMe}"
-                  selected="{viewModelLogin>/Login/RemeberMe}"/>
+                  selected="{loginViewModel>/Login/RemeberMe}"/>
 
                 <Link
                   id="idForgotPasswordLink"

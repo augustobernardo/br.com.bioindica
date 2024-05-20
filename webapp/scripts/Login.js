@@ -24,10 +24,11 @@ sap.ui.define([
 			Controller.apply(this, arguments);
 			this._oController = oController;
 			this._oViewController = this._oController.getView();
+			this._oRouterController = this._oController.getOwnerComponent().getRouter();
 
 			// Load the view model
-			this._oViewModelLogin = new JSONModel(this.createViewModelLogin());
-			this._oViewController.setModel(this._oViewModelLogin, "viewModelLogin");
+			this._oLoginViewModel = new JSONModel(this.createLoginViewModel());
+			this._oViewController.setModel(this._oLoginViewModel, "loginViewModel");
 
 			this._getFormDataAndControls();
 		},
@@ -38,8 +39,8 @@ sap.ui.define([
 		 * @returns {void}
 		 */
 		_getFormDataAndControls: function() {
-			this._oFormLoginValues = this._oViewModelLogin.getProperty("/Login");
-			this._oFormLoginControl = this._oViewModelLogin.getProperty("/LoginControl");
+			this._oFormLoginValues = this._oLoginViewModel.getProperty("/Login");
+			this._oFormLoginControl = this._oLoginViewModel.getProperty("/LoginControl");
 		},
 
 		/**
@@ -48,8 +49,8 @@ sap.ui.define([
 		 * @returns {void}
 		 */
 		_setFormDataAndControls: function() {
-			this._oViewModelLogin.setProperty("/Login", this._oFormLoginValues);
-			this._oViewModelLogin.setProperty("/LoginControl", this._oFormLoginControl);
+			this._oLoginViewModel.setProperty("/Login", this._oFormLoginValues);
+			this._oLoginViewModel.setProperty("/LoginControl", this._oFormLoginControl);
 		},
 
 		/**
@@ -63,6 +64,8 @@ sap.ui.define([
 
 			if (bEmailIsValid && bPasswordIsValid) {
 				// Call the login service (Backend)
+
+				this._oRouterController.navTo("Home");
 				return;
 			}
 			MessageBox.error(this._oController.getTextMain("stateErrorLogin"));
