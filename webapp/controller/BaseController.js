@@ -45,6 +45,29 @@ sap.ui.define([
 		},
 
 		/**
+		 * Get the language of the application.
+		 * @returns {string} The language of the application
+		 * @public
+		 */
+		getLanguage: function () {
+			return sap.ui.getCore().getConfiguration().getLanguage();
+		},
+
+		/**
+		 * Get the system language of the user.
+		 * @returns {string} The system language of the user
+		 * @public
+		 */
+		getSystemLanguage: function () {
+			var userLocale =
+				navigator.languages && navigator.languages.length
+					? navigator.languages[0]
+					: navigator.language;
+
+			return userLocale;
+		},
+
+		/**
 		 * Convenience method for setting the view model in every controller of the application.
 		 * @param {sap.ui.model.Model} oModel The model instance
 		 * @param {string} [sName] The model name
@@ -193,25 +216,25 @@ sap.ui.define([
 				},
 				HomeControl: {
 					Nome: {
-						Value: "",
 						ValueState: "None",
 						ValueStateText: ""
 					},
 					Email: {
-						Value: "",
 						ValueState: "None",
 						ValueStateText: ""
 					},
-					CPF: {
-						Value: "",
+					Cpf: {
 						ValueState: "None",
 						ValueStateText: ""
 					},
 					Telefone: {
-						Value: "",
 						ValueState: "None",
 						ValueStateText: ""
 					}
+				},
+				Configs: {
+					Theme: "",
+					Language: ""
 				}
 			}
 		},
@@ -240,7 +263,44 @@ sap.ui.define([
 			// Minimum eight characters, including letters, numbers and special characters
 			var oRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 			return oRegex.test(sPassword);
-		}
+		},
+
+		/**
+		 * Get the system theme of the user.
+		 * @public
+		 */
+		getSystemTheme: function () {
+			var bDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+			sap.ui.getCore().applyTheme(bDarkTheme.matches ? "sap_horizon_dark" : "sap_horizon");
+		},
+
+		/**
+		 * Get the system theme of the user.
+		 * @returns {string} The system theme of the user
+		 * @public
+		 */
+		_getSystemTheme: function () {
+			var bDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
+			return bDarkTheme.matches ? "sap_horizon_dark" : "sap_horizon";
+		},
+
+		/**
+		 * Apply the selected theme.
+		 * @param {string} sTheme The theme name
+		 * @public
+		 */
+		applyTheme: function(sTheme) {
+			sap.ui.getCore().applyTheme(sTheme || this._getSystemTheme());
+		},
+
+		/**
+		 * Apply the selected language.
+		 * @param {string} sLanguage The language name
+		 * @public
+		 */
+		applyLanguage: function(sLanguage) {
+			sap.ui.getCore().getConfiguration().setLanguage(sLanguage || this.getSystemLanguage());
+		},
 
 
 	});

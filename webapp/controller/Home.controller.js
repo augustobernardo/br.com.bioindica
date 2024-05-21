@@ -1,13 +1,13 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"br/com/bioindica/controller/BaseController",
 	"br/com/bioindica/scripts/Home"
 ], function(
-	Controller,
+	BaseController,
 	Home
 ) {
 	"use strict";
 
-	return Controller.extend("br.com.bioindica.controller.Home", {
+	return BaseController.extend("br.com.bioindica.controller.Home", {
 
 		onInit: function () {
 			this._oView = this.getView();
@@ -23,5 +23,20 @@ sap.ui.define([
 
 		},
 
+		getTextHome: function (sKey, aArgs) {
+			return this.getResourceBundle().getText(sKey, aArgs);
+		},
+
+		onClearNewUser: function (oEvent) {
+			this._oHome.clearFormNewUser();
+		},
+
+		onSaveNewUser: function (oEvent) {
+			this._oHome.saveNewUser();
+		},
+
+		onShowSettingDialog: function(oEvent) {
+			this._oHome.showSettingDialog();
+		},
 	});
 });

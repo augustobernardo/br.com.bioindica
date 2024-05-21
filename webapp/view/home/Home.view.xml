@@ -22,33 +22,12 @@
               </layoutData>
             </Title>
             <ToolbarSpacer />
-            <!-- <SearchField width="16rem" id="searchField">
-              <layoutData>
-                <OverflowToolbarLayoutData priority="Low" group="1"/>
-              </layoutData>
-            </SearchField> -->
-            <!-- <ToolbarSpacer id="spacer">
-              <layoutData>
-                <OverflowToolbarLayoutData priority="Low" group="1"/>
-              </layoutData>
-            </ToolbarSpacer>
-            <Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
-            <OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1">
-              <layoutData>
-                <OverflowToolbarLayoutData group="2"/>
-              </layoutData>
-            </OverflowToolbarButton>
-            <OverflowToolbarButton icon="sap-icon://card" type="Transparent" tooltip="Action 2" text="Action 2">
-              <layoutData>
-                <OverflowToolbarLayoutData group="2"/>
-              </layoutData>
-            </OverflowToolbarButton> -->
             <ToolbarSeparator>
               <layoutData>
                 <OverflowToolbarLayoutData group="2"/>
               </layoutData>
             </ToolbarSeparator>
-            <OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+            <OverflowToolbarButton icon="sap-icon://action-settings" press="onShowSettingDialog" type="Transparent" text="{i18n>homeButtonSettings}"/>
             <tnt:ToolHeaderUtilitySeparator/>
             <ToolbarSpacer width="1.125rem"/>
             <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
@@ -68,44 +47,69 @@
                       <Title text="{i18n>homeNewUser}" level="H2"/>
                       <ToolbarSpacer/>
 
-                      <Button text="{i18n>homeFormNewUserButton}" press="onSave" icon="sap-icon://add" type="Emphasized"/>
-                      <Button press="onClear" icon="sap-icon://eraser" type="Transparent" tooltip="{i18n>homeFormClear}"/>
+                      <Button text="{i18n>homeFormNewUserButton}" press="onSaveNewUser" icon="sap-icon://add" type="Emphasized"/>
+                      <Button press="onClearNewUser" icon="sap-icon://eraser" type="Transparent" tooltip="{i18n>homeFormClear}"/>
                     </Toolbar>
                   </headerToolbar>
                   <content>
                     <VBox>
-                      <HBox>
-                        <HBox>
+                      <HBox id="idFormNewUserHBox">
+                        <HBox id="idFullNameHBox">
                           <VBox>
                             <Label text="{i18n>homeFormName}:" required="true"/>
-                            <Input value="{homeViewModel>/Usuario/Nome}" width="15rem" placeholder="{i18n>homeFormNamePlaceHolder}" required="true"/>
+                            <Input value="{homeViewModel>/Usuario/Nome}"
+                              valueState="{homeViewModel>/HomeControl/Nome/ValueState}"
+                              valueStateText="{homeViewModel>/HomeControl/Nome/ValueStateText}"
+                              width="15rem"
+                              placeholder="{i18n>homeFormNamePlaceHolder}"
+                              required="true"/>
                           </VBox>
                         </HBox>
 
                         <ToolbarSpacer width="2rem"/>
 
-                        <HBox >
+                        <HBox id="idCpfHBox">
                           <VBox>
                             <Label text="{i18n>homeFormCPF}:" required="true"/>
-                            <MaskInput value="{homeViewModel>/Usuario/Cpf}" mask="999.999.999-99" width="8rem" placeholder="Enter CPF" required="true"/>
+                            <MaskInput
+                              value="{homeViewModel>/Usuario/Cpf}"
+                              valueState="{homeViewModel>/HomeControl/Cpf/ValueState}"
+                              valueStateText="{homeViewModel>/HomeControl/Cpf/ValueStateText}"
+                              mask="999.999.999-99"
+                              width="8rem"
+                              placeholder="{i18n>homeFormCpfPlaceholder}"
+                              required="true"/>
                           </VBox>
                         </HBox>
 
                         <ToolbarSpacer width="2rem"/>
 
-                        <HBox >
+                        <HBox id="idEmailHBox">
                           <VBox>
                             <Label text="{i18n>homeFormEmail}:" required="true"/>
-                            <Input type="Email" value="{homeViewModel>/Usuario/Email}" placeholder="{i18n>homeFormEmailPlaceHolder}" required="true"/>
+                            <Input
+                              type="Email"
+                              value="{homeViewModel>/Usuario/Email}"
+                              valueState="{homeViewModel>/HomeControl/Email/ValueState}"
+                              valueStateText="{homeViewModel>/HomeControl/Email/ValueStateText}"
+                              placeholder="{i18n>homeFormEmailPlaceHolder}"
+                              required="true"/>
                           </VBox>
                         </HBox>
 
                         <ToolbarSpacer width="2rem"/>
 
-                        <HBox >
+                        <HBox id="idPhoneHBox">
                           <VBox>
                             <Label text="{i18n>homeFormPhone}:" required="true"/>
-                            <MaskInput value="{homeViewModel>/Usuario/Telefone}" mask="(99) 99999-9999" width="8rem" placeholder="Enter Phone" required="true" />
+                            <MaskInput
+                              value="{homeViewModel>/Usuario/Telefone}"
+                              valueState="{homeViewModel>/HomeControl/Telefone/ValueState}"
+                              valueStateText="{homeViewModel>/HomeControl/Telefone/ValueStateText}"
+                              mask="(99) 99999-9999"
+                              width="8rem"
+                              placeholder="{i18n>homeFormPhonePlacheHolder}"
+                              required="true" />
                           </VBox>
                         </HBox>
 
