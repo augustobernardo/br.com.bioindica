@@ -50,5 +50,13 @@ sap.ui.define([
 		onEditUser: function (oEvent) {
 			this._oHome.editUser(oEvent);
 		},
+
+		onSaveEditUser: function (oEvent) {
+			this._oHome.saveEditUser(oEvent);
+		},
+
+		onCancelEditUser: function (oEvent) {
+			this._oHome.cancelEditUser(oEvent);
+		},
 	});
 });

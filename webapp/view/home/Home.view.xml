@@ -122,6 +122,7 @@
                     <table:Table
                       id="idUsersTable"
                       rows="{homeViewModel>/TabelaUsuarios}"
+                      visible="{= !${homeViewModel>/EditableTable/Visible} }"
                       alternateRowColors="true"
                       rowSelectionChange="onUsersTableSelectionChange"
                       noData="{i18n>homeTableNoData}">
@@ -132,10 +133,7 @@
                           <Button
                             tooltip="{i18n>homeButtonEdit}"
                             press="onEditUser"
-                            icon="sap-icon://edit"
-                            enabled="{=
-                              ${homeViewModel>/TabelaUsuariosConfigs/SelectedIndices/length} === 1 ? true : false
-                            }"/>
+                            icon="sap-icon://edit"/>
                           <Button
                             tooltip="{i18n>homeButtonDelete}"
                             press="onDeleteUser"
@@ -168,6 +166,70 @@
                           <Label text="{i18n>homeFormPhone}"/>
                           <table:template>
                             <Text text="{homeViewModel>Telefone}"/>
+                          </table:template>
+                        </table:Column>
+                      </table:columns>
+                    </table:Table>
+
+                    <table:Table
+                      id="idUsersEditableTable"
+                      rows="{homeViewModel>/TabelaUsuarios}"
+                      visible="{homeViewModel>/EditableTable/Visible}"
+                      alternateRowColors="true"
+                      noData="{i18n>homeTableNoData}">
+                      <table:extension>
+                        <Toolbar>
+                          <Title text="{i18n>homeTableUsers} ({homeViewModel>/TabelaUsuarios/length})" level="H2"/>
+
+                          <ToolbarSpacer/>
+
+                          <Button
+                            text="{i18n>homeButtonSaveEdit}"
+                            tooltip="{i18n>homeButtonSaveEdit}"
+                            press="onSaveEditUser"
+                            icon="sap-icon://save" />
+
+                          <Button
+                            text="{i18n>homeButtonCancelEdit}"
+                            tooltip="{i18n>homeButtonCancelEdit}"
+                            press="onCancelEditUser"
+                            icon="sap-icon://decline"
+                            type="Emphasized"/>
+
+                          <ToolbarSeparator />
+
+                          <Button
+                            tooltip="{i18n>homeButtonDelete}"
+                            press="onDeleteUser"
+                            icon="sap-icon://delete"
+                            enabled="{=
+                              ${homeViewModel>/TabelaUsuariosConfigs/SelectedIndices/length} === 0 ? false : true
+                            }"/>
+                        </Toolbar>
+                      </table:extension>
+                      <table:columns>
+                        <table:Column>
+                          <Label text="{i18n>homeFormName}"/>
+                          <table:template>
+                            <Input id="idNomeEditInput" value="{homeViewModel>Nome}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormCPF}"/>
+                          <table:template>
+                            <Input id="idCpfEditInput" value="{homeViewModel>Cpf}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormEmail}"/>
+                          <table:template>
+                            <Input id="idEmailEditInput" value="{homeViewModel>Email}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormPhone}"/>
+                          <table:template>
+                            <Input id="idTelefoneEditInput" value="{homeViewModel>Telefone}"/>
                           </table:template>
                         </table:Column>
                       </table:columns>

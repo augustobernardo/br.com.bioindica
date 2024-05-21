@@ -2,10 +2,12 @@ sap.ui.define([
 	"br/com/bioindica/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/table/Table",
 ], function(
 	BaseController,
 	Controller,
-	JSONModel
+	JSONModel,
+	Table
 ) {
 	"use strict";
 
@@ -310,11 +312,34 @@ sap.ui.define([
 		 * @returns {void}
 		 */
 		editUser: function(oEvent) {
-			// var oTable = this._oViewController.byId("idUsersTable");
-			// var oSelectedItem = oTable.getSelectedIndex();
-			// var oUser = this._oHomeViewModel.getProperty("/TabelaUsuarios")[oSelectedItem];
+			this._aTableAux = this._oHomeViewModel.getProperty("/TabelaUsuarios");
+			this._oHomeViewModel.setProperty("/TabelaEditUsuarios", this._aTableAux);
+			this._oHomeViewModel.setProperty("/EditableTable/Visible", true);
+		},
 
+		/**
+		 * Save the edited users
+		 * @public
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @returns {void}
+		 */
+		saveEditUser: function(oEvent) {
+			this._oTableHome  = this._oHomeViewModel.getProperty("/TabelaUsuarios");
+			this._setFormDataAndControls();
+			this._oHomeViewModel.setProperty("/EditableTable/Visible", false);
+			this._setTitleTableHome();
+		},
 
+		/**
+		 * Cancel the edited users
+		 * @public
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @returns {void}
+		 */
+		cancelEditUser: function(oEvent) {
+			this._oHomeViewModel.setProperty("/TabelaUsuarios", this._aTableAux);
+
+			this._oHomeViewModel.setProperty("/EditableTable/Visible", false);
 		},
 
 	});

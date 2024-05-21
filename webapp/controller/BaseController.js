@@ -208,8 +208,12 @@ sap.ui.define([
 						Telefone: "(987) 654-3210"
 					}
 				],
+				TabelaEditUsuarios: [],
 				TabelaUsuariosConfigs: {
 					SelectedIndices: []
+				},
+				EditableTable: {
+					Visible: false,
 				},
 				Usuario: {
 					Nome: "",
