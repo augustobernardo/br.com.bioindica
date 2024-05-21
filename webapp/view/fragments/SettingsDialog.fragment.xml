@@ -11,7 +11,7 @@
             <Label text="{i18n>lblLanguage}" />
             <Select
               id="idLanguageSelect"
-              selectedKey="{homeView>/Language}"
+              selectedKey="{homeViewModel>/Configs/Language}"
               change="onChangeSelectLanguage">
 
               <core:Item
@@ -31,7 +31,7 @@
             <Label text="{i18n>lblTheme}" />
             <Select
               id="idThemeSelect"
-              selectedKey="{homeView>/Theme}"
+              selectedKey="{homeViewModel>/Configs/Theme}"
               change="onChangeSelectTheme">
 
               <core:Item

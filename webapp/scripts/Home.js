@@ -29,6 +29,7 @@ sap.ui.define([
 			this._oViewController.setModel(this._oHomeViewModel, "homeViewModel");
 
 			this._getFormDataAndControls();
+			this._setTitleTableHome();
 		},
 
 
@@ -41,6 +42,11 @@ sap.ui.define([
 			this._oTableHome = this._oHomeViewModel.getProperty("/TabelaUsuarios");
 			this._oUser = this._oHomeViewModel.getProperty("/Usuario");
 			this._oFormHomeControl = this._oHomeViewModel.getProperty("/HomeControl");
+		},
+
+		_setTitleTableHome: function() {
+			var sQuantityUsers = this._oTableHome.length;
+			this._oHomeViewModel.setProperty("/TitleTableHome", this._oController.getTextHome("homeTableUsers", [sQuantityUsers]));
 		},
 
 		/**
@@ -148,7 +154,7 @@ sap.ui.define([
 				return true;
 			}
 
-			if (this.checkEmail(this._oUser.Email)) {
+			if (!this.checkEmail(this._oUser.Email)) {
 				this._oFormHomeControl.Email.ValueState = "Error";
 				this._oFormHomeControl.Email.ValueStateText = this._oController.getTextHome("stateErrorInvalidEmail", []);
 				return true;
@@ -257,8 +263,59 @@ sap.ui.define([
 			this.applyLanguage(oConfigs.Language);
 		},
 
+		/**
+		 * Close the setting dialog
+		 * @public
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @returns {void}
+		 */
 		onCloseConfigDialog: function(oEvent) {
 			this._oSettingsDialog.close();
+			this._oSettingsDialog.destroy();
 		},
+
+		/**
+		 * Handle the table selection change event.
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @public
+		 */
+		usersTableSelectionChange: function(oEvent) {
+			var oTable = oEvent.getSource();
+			this._oHomeViewModel.setProperty("/TabelaUsuariosConfigs/SelectedIndices", oTable.getSelectedIndices());
+		},
+
+		/**
+		 * Delete the user
+		 * @public
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @returns {void}
+		 */
+		deleteUser: function(oEvent) {
+			var aSelectedIndices = this._oHomeViewModel.getProperty("/TabelaUsuariosConfigs/SelectedIndices");
+			var aTableHome = this._oHomeViewModel.getProperty("/TabelaUsuarios");
+
+			for (var i = aSelectedIndices.length - 1; i >= 0; i--) {
+				aTableHome.splice(aSelectedIndices[i], 1);
+			}
+
+			this._oHomeViewModel.setProperty("/TabelaUsuarios", aTableHome);
+			this._setFormDataAndControls();
+			this._setTitleTableHome();
+		},
+
+		/**
+		 * Edit the user
+		 * @public
+		 * @param {sap.ui.base.Event} oEvent The event object
+		 * @returns {void}
+		 */
+		editUser: function(oEvent) {
+			// var oTable = this._oViewController.byId("idUsersTable");
+			// var oSelectedItem = oTable.getSelectedIndex();
+			// var oUser = this._oHomeViewModel.getProperty("/TabelaUsuarios")[oSelectedItem];
+
+
+		},
+
 	});
 });

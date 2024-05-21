@@ -38,5 +38,17 @@ sap.ui.define([
 		onShowSettingDialog: function(oEvent) {
 			this._oHome.showSettingDialog();
 		},
+
+		onDeleteUser: function (oEvent) {
+			this._oHome.deleteUser(oEvent);
+		},
+
+		onUsersTableSelectionChange: function (oEvent) {
+			this._oHome.usersTableSelectionChange(oEvent);
+		},
+
+		onEditUser: function (oEvent) {
+			this._oHome.editUser(oEvent);
+		},
 	});
 });

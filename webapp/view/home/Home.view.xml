@@ -112,55 +112,66 @@
                               required="true" />
                           </VBox>
                         </HBox>
-
-                        <ToolbarSpacer width="2rem"/>
-
-                        <!-- <HBox >
-                          <VBox>
-                            <Label text="Cargo:" required="true"/>
-                            <Input value="{/cargo}" width="8rem" placeholder="Enter Cargo" required="true"/>
-                          </VBox>
-                        </HBox> -->
                       </HBox>
                     </VBox>
                   </content>
                 </Panel>
 
-                <Panel headerText="{i18n>homeTableUsers}">
-                  <!-- <headerToolbar>
-                    <Toolbar>
-                      <Title text="{i18n>homeTableUsers}" level="H2"/>
-                    </Toolbar>
-                  </headerToolbar> -->
+                <Panel>
                   <content>
-                      <table:Table id="idTable" rows="{homeViewModel>/TabelaUsuarios}" noData="{i18n>homeTableNoData}">
-                        <table:columns>
-                          <table:Column>
-                            <Label text="{i18n>homeFormName}"/>
-                            <table:template>
-                              <Text text="{homeViewModel>Nome}"/>
-                            </table:template>
-                          </table:Column>
-                          <table:Column>
-                            <Label text="{i18n>homeFormCPF}"/>
-                            <table:template>
-                              <Text text="{homeViewModel>Cpf}"/>
-                            </table:template>
-                          </table:Column>
-                          <table:Column>
-                            <Label text="{i18n>homeFormEmail}"/>
-                            <table:template>
-                              <Text text="{homeViewModel>Email}"/>
-                            </table:template>
-                          </table:Column>
-                          <table:Column>
-                            <Label text="{i18n>homeFormPhone}"/>
-                            <table:template>
-                              <Text text="{homeViewModel>Telefone}"/>
-                            </table:template>
-                          </table:Column>
-                        </table:columns>
-                      </table:Table>
+                    <table:Table
+                      id="idUsersTable"
+                      rows="{homeViewModel>/TabelaUsuarios}"
+                      alternateRowColors="true"
+                      rowSelectionChange="onUsersTableSelectionChange"
+                      noData="{i18n>homeTableNoData}">
+                      <table:extension>
+                        <Toolbar>
+                          <Title text="{i18n>homeTableUsers} ({homeViewModel>/TabelaUsuarios/length})" level="H2"/>
+                          <ToolbarSpacer/>
+                          <Button
+                            tooltip="{i18n>homeButtonEdit}"
+                            press="onEditUser"
+                            icon="sap-icon://edit"
+                            enabled="{=
+                              ${homeViewModel>/TabelaUsuariosConfigs/SelectedIndices/length} === 1 ? true : false
+                            }"/>
+                          <Button
+                            tooltip="{i18n>homeButtonDelete}"
+                            press="onDeleteUser"
+                            icon="sap-icon://delete"
+                            enabled="{=
+                              ${homeViewModel>/TabelaUsuariosConfigs/SelectedIndices/length} === 0 ? false : true
+                            }"/>
+                        </Toolbar>
+                      </table:extension>
+                      <table:columns>
+                        <table:Column>
+                          <Label text="{i18n>homeFormName}"/>
+                          <table:template>
+                            <Text text="{homeViewModel>Nome}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormCPF}"/>
+                          <table:template>
+                            <Text text="{homeViewModel>Cpf}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormEmail}"/>
+                          <table:template>
+                            <Text text="{homeViewModel>Email}"/>
+                          </table:template>
+                        </table:Column>
+                        <table:Column>
+                          <Label text="{i18n>homeFormPhone}"/>
+                          <table:template>
+                            <Text text="{homeViewModel>Telefone}"/>
+                          </table:template>
+                        </table:Column>
+                      </table:columns>
+                    </table:Table>
                   </content>
                 </Panel>
               </VBox>

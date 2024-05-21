@@ -208,6 +208,9 @@ sap.ui.define([
 						Telefone: "(987) 654-3210"
 					}
 				],
+				TabelaUsuariosConfigs: {
+					SelectedIndices: []
+				},
 				Usuario: {
 					Nome: "",
 					Email: "",
@@ -230,7 +233,7 @@ sap.ui.define([
 					Telefone: {
 						ValueState: "None",
 						ValueStateText: ""
-					}
+					},
 				},
 				Configs: {
 					Theme: "",
