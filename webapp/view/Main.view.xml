@@ -83,11 +83,11 @@
                   text="{i18n>formRememberMe}"
                   selected="{loginViewModel>/Login/RemeberMe}"/>
 
-                <Link
+                <!-- <Link
                   id="idForgotPasswordLink"
                   text="{i18n>formForgotPassword}"
                   press="onForgot"
-                  class="sapUiTinyMarginTop customLinkNoUnderline" />
+                  class="sapUiTinyMarginTop customLinkNoUnderline" /> -->
               </HBox>
 
               <VBox
@@ -106,7 +106,7 @@
                   press="onSubmitLogin" />
               </VBox>
 
-              <HBox
+              <!-- <HBox
                 id="idRegisterHBox"
                 width="100%"
                 justifyContent="Center">
@@ -125,7 +125,7 @@
                   text="{i18n>formCreateAccount}"
                   press="onRouteRegister"
                   class="sapUiSmallMarginTop customLinkNoUnderline" />
-              </HBox>
+              </HBox> -->
             </VBox>
           </f:content>
 			</f:Card>
