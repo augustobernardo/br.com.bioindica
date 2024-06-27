@@ -13,10 +13,7 @@
       <tnt:ToolPage id="idHomeToolPage">
         <tnt:header>
           <tnt:ToolHeader>
-            <Image height="1.5rem"
-                class="sapUiSmallMarginBegin"
-                src="https://www.sap.com/dam/application/shared/logos/sap-logo-svg.svg" />
-            <Title level="H1" text="{i18n>appTitle}" wrapping="false">
+            <Title level="H1" text="{i18n>appTitle}" wrapping="false" class="sapUiSmallMarginBegin">
               <layoutData>
                 <OverflowToolbarLayoutData priority="Disappear"/>
               </layoutData>
@@ -30,11 +27,12 @@
             <OverflowToolbarButton icon="sap-icon://action-settings" press="onShowSettingDialog" type="Transparent" text="{i18n>homeButtonSettings}"/>
             <tnt:ToolHeaderUtilitySeparator/>
             <ToolbarSpacer width="1.125rem"/>
-            <Avatar src="test-resources/sap/tnt/images/Woman_avatar_01.png" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
-              <layoutData>
-                <OverflowToolbarLayoutData priority="NeverOverflow"/>
-              </layoutData>
-            </Avatar>
+            <!-- button to logout -->
+            <Button
+              icon="sap-icon://log"
+              tooltip="{i18n>homeButtonLogout}"
+              type="Transparent"
+              press="onLogout"/>
           </tnt:ToolHeader>
         </tnt:header>
         <tnt:mainContents>

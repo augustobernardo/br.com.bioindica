@@ -266,11 +266,11 @@ sap.ui.define([
 		 * @param {string} sPassword The password value
 		 * @returns {boolean} Returns true if the value is valid
 		 */
-		checkPassword: function (sPassword) {
-			// Minimum eight characters, including letters, numbers and special characters
-			var oRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-			return oRegex.test(sPassword);
-		},
+		// checkPassword: function (sPassword) {
+		// 	// Minimum eight characters, including letters, numbers and special characters
+		// 	var oRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+		// 	return oRegex.test(sPassword);
+		// },
 
 		/**
 		 * Get the system theme of the user.

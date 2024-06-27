@@ -3,11 +3,13 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/table/Table",
+	"sap/m/MessageBox",
 ], function(
 	BaseController,
 	Controller,
 	JSONModel,
-	Table
+	Table,
+	MessageBox
 ) {
 	"use strict";
 
@@ -96,7 +98,6 @@ sap.ui.define([
 			var oHaveError = this._checkHomeForm();
 			var bHaveError = false;
 
-			// Check if there is any error
 			for (var sKey in oHaveError) {
 				if (oHaveError[sKey]) {
 					bHaveError = true;
@@ -106,6 +107,11 @@ sap.ui.define([
 
 			if (bHaveError) {
 				this._setFormDataAndControls();
+				return;
+			}
+
+			// check if the CPF and Email is already registered
+			if (this._checkCpfAndEmailIsRegistered()) {
 				return;
 			}
 
@@ -120,6 +126,38 @@ sap.ui.define([
 				CpfError: this._checkHomeFormCpf(),
 				TelefoneError: this._checkHomeFormTelefone(),
 			}
+		},
+
+		_checkCpfAndEmailIsRegistered: function() {
+			var sCpf = this._oUser.Cpf;
+			var sEmail = this._oUser.Email;
+
+			var bCpfIsRegistered = this._oTableHome.some(function(oUser) {
+				return oUser.Cpf == sCpf;
+			}, this);
+
+			if (bCpfIsRegistered) {
+				this._oFormHomeControl.Cpf.ValueState = "Error";
+				this._oFormHomeControl.Cpf.ValueStateText = this._oController.getTextHome("stateErrorCpfAlreadyRegistered", []);
+			} else {
+				this._oFormHomeControl.Cpf.ValueState = "None";
+				this._oFormHomeControl.Cpf.ValueStateText = "";
+			}
+
+			var bEmailIsRegistered = this._oTableHome.some(function(oUser) {
+				return oUser.Email == sEmail;
+			});
+
+			if (bEmailIsRegistered) {
+				this._oFormHomeControl.Email.ValueState = "Error";
+				this._oFormHomeControl.Email.ValueStateText = this._oController.getTextHome("stateErrorEmailAlreadyRegistered", []);
+			} else {
+				this._oFormHomeControl.Email.ValueState = "None";
+				this._oFormHomeControl.Email.ValueStateText = "";
+			}
+
+			this._oHomeViewModel.setProperty("/HomeControl", this._oFormHomeControl);
+			return bCpfIsRegistered || bEmailIsRegistered;
 		},
 
 		/**
@@ -325,9 +363,45 @@ sap.ui.define([
 		 */
 		saveEditUser: function(oEvent) {
 			this._oTableHome  = this._oHomeViewModel.getProperty("/TabelaUsuarios");
+
+			if (this._checkTableEditUsers()) {
+				return;
+			}
+
 			this._setFormDataAndControls();
 			this._oHomeViewModel.setProperty("/EditableTable/Visible", false);
 			this._setTitleTableHome();
+		},
+
+		_checkTableEditUsers: function() {
+			// check if the CPF and Email is already registered
+			var bHaveError = false;
+			var aTableEditUsers = this._oHomeViewModel.getProperty("/TabelaEditUsuarios");
+
+			for (var i = 0; i < aTableEditUsers.length; i++) {
+				// check if the CPF and Email is already registered
+				if (this._oTableHome.some(function(oUser) {
+					return oUser.Cpf == aTableEditUsers[i].Cpf && oUser.Email == aTableEditUsers[i].Email;
+				})) {					
+					bHaveError = true;
+					break;
+				}
+			}
+
+			if (bHaveError) {
+				this._oHomeViewModel.setProperty("/EditableTable/Visible", true);
+				
+				MessageBox.error(
+					this._oController.getTextHome("stateErrorCpfAndEmailAlreadyRegistered", []),
+					{
+						actions: [MessageBox.Action.OK],
+						onClose: function() {
+							return;
+						}
+					}
+				);
+				return true;
+			}
 		},
 
 		/**

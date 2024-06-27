@@ -77,7 +77,7 @@
 					"name": "Main",
 					"target": "main"
 				},
-        {
+        		{
 					"pattern": "home",
 					"name": "Home",
 					"target": "home"
@@ -89,11 +89,11 @@
 					"transition": "fade",
 					"viewName": "Main"
 				},
-        "home": {
-          "viewId": "home",
-          "transition": "fade",
-          "viewName": "home/Home"
-        }
+				"home": {
+					"viewId": "home",
+					"transition": "fade",
+					"viewName": "home/Home"
+				}
 			}
 		}
 	}

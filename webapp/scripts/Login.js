@@ -58,49 +58,13 @@ sap.ui.define([
 		 * @public
 		 * @returns {void}
 		 */
-		submitLogin: async function() {
+		submitLogin: function() {
 			var bEmailIsValid = this.checkEmailField();
 			var bPasswordIsValid = this.checkPasswordField();
 
 			if (bEmailIsValid && bPasswordIsValid) {
-				// Call the login service (Backend)
-
-				// i have a service API in the localhost:8080/api/user that returns a JSON object with the user data
-				var sEmail = this._oFormLoginValues.Email;
-				var sPassword = this._oFormLoginValues.Password;
-
-				var sUrl = "177.153.58.182:8080/bioindica/api/authentication/authenticate";
-				var oJson = {
-					"email": sEmail,
-					"password": sPassword
-				};
-				
-				// use the fetch API to call the service
-				// var oResponse = await fetch(sUrl, {
-				// 	method: "POST",
-				// 	headers: {
-				// 		"Content-Type": "application/json"
-				// 	},
-				// 	body: JSON.stringify(oJson)
-				// });
-
-				// debugger
-				// Check if the response is OK
-				// if (!oResponse.ok) {
-				// 	MessageBox.error(this._oController.getTextMain("stateErrorLogin"));
-				// 	return;
-				// }
-				// if (oDataResponse) {
-				// 	// Save the user data in the session
-					
-
-				// 	// Navigate to the Home page
-				// 	this._oRouterController.navTo("Home");
-				// 	return;
-				// }
-
-
-				// this._oRouterController.navTo("Home");
+				this._oRouterController.navTo("Home");
+				MessageBox.success(this._oController.getTextMain(("stateSuccessLogin")));
 				return;
 			}
 			MessageBox.error(this._oController.getTextMain("stateErrorLogin"));
@@ -162,20 +126,20 @@ sap.ui.define([
 			);
 
 			if (sPassword) {
-				var bPasswordIsValid = this.checkPassword(sPassword);
+				// var bPasswordIsValid = this.checkPassword(sPassword);
 
-				if (bPasswordIsValid) {
+				// if (bPasswordIsValid) {
 					this._oFormLoginControl.PasswordInput = {
 						ValueState: "None",
 						ValueStateText: ""
 					};
 					this._setFormDataAndControls();
 					return true;
-				}
-				this._oFormLoginControl.PasswordInput = {
-					ValueState: "Error",
-					ValueStateText: this._oController.getTextMain("stateErrorInvalidPassword")
-				};
+				// }
+				// this._oFormLoginControl.PasswordInput = {
+				// 	ValueState: "Error",
+				// 	ValueStateText: this._oController.getTextMain("stateErrorInvalidPassword")
+				// };
 			} else {
 				this._oFormLoginControl.PasswordInput = {
 					ValueState: "Error",

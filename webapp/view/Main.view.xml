@@ -71,7 +71,7 @@
                 valueStateText="{loginViewModel>/LoginControl/PasswordInput/ValueStateText}"/>
 
               <!-- REMEMBER ME -->
-              <HBox
+              <!-- <HBox
                 id="idRememberMeHBox"
                 class="sapUiSmallMarginTop"
                 width="100%"
@@ -82,13 +82,8 @@
                   class="sapUiSmallMarginEnd"
                   text="{i18n>formRememberMe}"
                   selected="{loginViewModel>/Login/RemeberMe}"/>
-
-                <!-- <Link
-                  id="idForgotPasswordLink"
-                  text="{i18n>formForgotPassword}"
-                  press="onForgot"
-                  class="sapUiTinyMarginTop customLinkNoUnderline" /> -->
-              </HBox>
+                  
+              </HBox> -->
 
               <VBox
                 id="idLoginButtonVBox"

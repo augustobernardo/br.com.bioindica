@@ -20,7 +20,6 @@ sap.ui.define([
 		},
 
 		_onRouteMatched: function (oEvent) {
-
 		},
 
 		getTextHome: function (sKey, aArgs) {
@@ -57,6 +56,10 @@ sap.ui.define([
 
 		onCancelEditUser: function (oEvent) {
 			this._oHome.cancelEditUser(oEvent);
+		},
+
+		onLogout: function (oEvent) {
+			this._oHome.logout();
 		},
 	});
 });
