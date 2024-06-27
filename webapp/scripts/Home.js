@@ -416,5 +416,9 @@ sap.ui.define([
 			this._oHomeViewModel.setProperty("/EditableTable/Visible", false);
 		},
 
+		logout: function() {
+			this._oRouterController.navTo("Main");
+		},
+
 	});
 });

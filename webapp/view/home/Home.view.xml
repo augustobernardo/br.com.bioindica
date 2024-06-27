@@ -27,7 +27,6 @@
             <OverflowToolbarButton icon="sap-icon://action-settings" press="onShowSettingDialog" type="Transparent" text="{i18n>homeButtonSettings}"/>
             <tnt:ToolHeaderUtilitySeparator/>
             <ToolbarSpacer width="1.125rem"/>
-            <!-- button to logout -->
             <Button
               icon="sap-icon://log"
               tooltip="{i18n>homeButtonLogout}"

@@ -194,20 +194,7 @@ sap.ui.define([
 		 */
 		createViewModelHome: function () {
 			return {
-				TabelaUsuarios: [
-					{
-						Nome: "John Doe",
-						Email: "john.doe@example.com",
-						Cpf: "123.456.789-00",
-						Telefone: "(123) 456-7890"
-					},
-					{
-						Nome: "Jane Doe",
-						Email: "jane.doe@example.com",
-						Cpf: "987.654.321-00",
-						Telefone: "(987) 654-3210"
-					}
-				],
+				TabelaUsuarios: [],
 				TabelaEditUsuarios: [],
 				TabelaUsuariosConfigs: {
 					SelectedIndices: []
